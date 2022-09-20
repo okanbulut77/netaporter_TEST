@@ -6,7 +6,12 @@ import com.netaporter.service.ProductService;
 import java.util.List;
 
 public class NetAPorterShop {
+
+    // Feature branch doesn't have constructor
+
     ProductService productService = new ProductService();
+    BasketManagement basketManagement = new BasketManagement();
+
     public void loadProducts() {
         // TODO Exercise 1a - Parsing the product-data.csv data file
         //System.out.println("Load Products Not Implemented");
@@ -27,7 +32,7 @@ public class NetAPorterShop {
      */
     public void addProductToBasket(String productId) {
         // TODO Exercise 2a - feature to add Products to the basket
-        BasketManagement basketManagement = new BasketManagement();
+
         Product product = productService.getProduct(productId);
         if (product != null){
             System.out.println("Product with Id: " + productId + " added to the basket");
@@ -40,9 +45,15 @@ public class NetAPorterShop {
     /**
      * Remove a product from the Basket
      */
-    public void removeProductFromBasket() {
+    public void removeProductFromBasket(String productId) {
         // TODO Exercise 2b - feature to remove Products from the basket
-        System.out.println("Remove Product Not Implemented");
+
+        Product product = productService.getProduct(productId);
+        if (product != null) {
+            basketManagement.removeFromBasket(productId);
+        } else {
+            System.out.println("No product with  Id: " + productId);
+        }
     }
 
     /**
@@ -51,6 +62,7 @@ public class NetAPorterShop {
     public void getTotal() {
         // TODO Exercise 2c - feature to show the total value of Products in the basket
         System.out.println("Get Total Not Implemented");
+
     }
 
 }
